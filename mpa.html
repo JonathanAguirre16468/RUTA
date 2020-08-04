@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>ruta de casa a escuela </title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+  	mapboxgl.accessToken = 'pk.eyJ1IjoiYXNlc2luZGFiZXN0IiwiYSI6ImNrZGVvamlyYTE1eHEycW10c3I2MTAzMnIifQ.EYKeGWZD1uEMVEcVbzpX3g';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-100.494054,  25.676714],
+        zoom: 15
+    });
+
+    map.on('load', function() {
+        map.addSource('route', {
+            'type': 'geojson',
+            'data': {
+                'type': 'Feature',
+                'properties': {},
+                'geometry': {
+                    'type': 'LineString',
+                    'coordinates': [
+                        
+                
+                        [-100.494054, 25.676714],
+                        [-100.493128, 25.679016],
+                        [-100.49085,25.678582],
+                        [-100.488058,25.684475],
+                        [-100.510816,25.692444  ],
+                        [-100.511631, 25.68937 ],
+                    
+                    ]
+                }
+            }
+        });
+        map.addLayer({
+            'id': 'route',
+            'type': 'line',
+            'source': 'route',
+            'layout': {
+                'line-join': 'round',
+                'line-cap': 'round'
+            },
+            'paint': {
+                'line-color': '#888',
+                'line-width': 8
+                
+            }
+        });
+    });
+       
+                var marker = new mapboxgl.Marker()
+                .setLngLat([-100.494054, 25.676714 ])
+                .addTo(map);
+
+                var marker = new mapboxgl.Marker()
+                .setLngLat([-100.511631, 25.68937 ])
+                .addTo(map);
+                
+
+</script>
+
+</body>
+</html>
